@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mother's Day Graphics – Beautiful Digital Designs for Mom</title>
+  <meta name="description" content="Discover beautiful Mother's Day graphics: PNG, SVG, templates for cards, posters, and gifts. Instant download, commercial license.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span>🌸</span> MomGraphics</a>
+    <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="gift-guide.html">Gift Guide</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="wish-btn" onclick="openDrawer()" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span class="wish-count">0</span>
+      </button>
+      <a href="shop.html" class="nav-cta">Explore All →</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="">
+    <source src="asset/mothers-day-graphics.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">✨ Season 2025 Collection</span>
+    <h1>Beautiful Graphics for <em>Mother's Day</em></h1>
+    <p class="hero-sub">Discover 30+ stunning digital designs — cards, posters, clipart &amp; bundles. Instant download in PNG, SVG &amp; more.</p>
+    <div class="hero-buttons">
+      <a href="shop.html" class="btn btn-primary">Explore All Designs</a>
+      <a href="gift-guide.html" class="btn btn-outline">Gift Guide</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>30+</strong><small>Unique Designs</small></div>
+      <div class="hero-stat"><strong>6</strong><small>Categories</small></div>
+      <div class="hero-stat"><strong>4</strong><small>File Formats</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CATEGORIES ═══════════ -->
+<section class="categories-strip" id="categories">
+  <div class="container">
+    <div style="text-align:center;" class="aos">
+      <span class="section-label">Shop by Category</span>
+      <h2>Find Your Perfect Design</h2>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- ═══════════ POPULAR DESIGNS ═══════════ -->
+<section class="popular-section">
+  <div class="container">
+    <div class="section-header aos">
+      <div>
+        <span class="section-label">Trending Now</span>
+        <h2>Most Popular Designs</h2>
+      </div>
+      <a href="shop.html" class="btn btn-outline">View All →</a>
+    </div>
+    <div class="products-grid" id="popularGrid"></div>
+  </div>
+</section>
+
+<!-- ═══════════ QUOTE ═══════════ -->
+<section class="quote-section">
+  <div class="container aos">
+    <blockquote>"A mother's love is the fuel that enables a normal human being to do the impossible."</blockquote>
+    <p class="quote-author">— Marion C. Garretty</p>
+  </div>
+</section>
+
+<!-- ═══════════ WHY US ═══════════ -->
+<section class="why-section">
+  <div class="container">
+    <div style="text-align:center;" class="aos">
+      <span class="section-label">Why Choose Us</span>
+      <h2>Quality You Can Trust</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card aos">
+        <div class="why-icon">🎨</div>
+        <h3>Premium Quality</h3>
+        <p>Every design is crafted by professional artists with attention to detail and current trends.</p>
+      </div>
+      <div class="why-card aos">
+        <div class="why-icon">⚡</div>
+        <h3>Instant Download</h3>
+        <p>Get your files immediately after purchase. No waiting, no shipping — start creating right away.</p>
+      </div>
+      <div class="why-card aos">
+        <div class="why-icon">📄</div>
+        <h3>Multiple Formats</h3>
+        <p>PNG, SVG, EPS, DXF — everything you need for cards, prints, crafts, and digital projects.</p>
+      </div>
+      <div class="why-card aos">
+        <div class="why-icon">✅</div>
+        <h3>Commercial License</h3>
+        <p>Use designs for personal and commercial projects. Perfect for small businesses and Etsy shops.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GIFT GUIDE TEASER ═══════════ -->
+<section class="gift-teaser">
+  <div class="container">
+    <div class="section-header aos">
+      <div>
+        <span class="section-label">Inspiration</span>
+        <h2>Gift Ideas for Mom</h2>
+      </div>
+      <a href="gift-guide.html" class="btn btn-outline">Full Gift Guide →</a>
+    </div>
+    <div class="gift-teaser-grid">
+      <div class="gift-card aos">
+        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&h=400&fit=crop" alt="Handmade card" loading="lazy">
+        <div class="gift-card-body">
+          <span class="limited-badge">Best for Handmade</span>
+          <h3>Custom Greeting Card</h3>
+          <p>Print a beautiful design on cardstock for a heartfelt, personal touch.</p>
+        </div>
+      </div>
+      <div class="gift-card aos">
+        <img src="https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?w=600&h=400&fit=crop" alt="Framed poster" loading="lazy">
+        <div class="gift-card-body">
+          <span class="limited-badge">Seasonal Favorite</span>
+          <h3>Framed Art Print</h3>
+          <p>Turn any graphic into a stunning wall art piece for Mom's favorite room.</p>
+        </div>
+      </div>
+      <div class="gift-card aos">
+        <img src="https://images.unsplash.com/photo-1556103255-4443dbf8ea38?w=600&h=400&fit=crop" alt="Custom mug" loading="lazy">
+        <div class="gift-card-body">
+          <span class="limited-badge">Limited Edition</span>
+          <h3>Personalized Mug</h3>
+          <p>Use sublimation or heat transfer to create a one-of-a-kind mug she'll love.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FREE SAMPLE CTA ═══════════ -->
+<section class="cta-section">
+  <div class="container aos">
+    <h2>Get a Free Mother's Day Card</h2>
+    <p>Download a beautiful sample design — absolutely free. No signup required!</p>
+    <a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener" class="btn btn-white">Download Free Sample</a>
+    <div class="cta-form">
+      <input type="email" placeholder="Your email for exclusive deals...">
+      <button class="btn btn-white" style="padding:.8rem 1.6rem;" onclick="alert('Thank you! Check your inbox for exclusive deals.')">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span>🌸</span> MomGraphics</div>
+        <p>Beautiful digital graphics for Mother's Day. Cards, posters, clipart, and more — crafted with love for every mom.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="gift-guide.html">Gift Guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="shop.html#floral">Floral</a></li>
+          <li><a href="shop.html#quotes">Quotes</a></li>
+          <li><a href="shop.html#kids">Kids</a></li>
+          <li><a href="shop.html#modern">Modern</a></li>
+          <li><a href="shop.html#bundles">Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-newsletter">
+        <h4>Stay Inspired</h4>
+        <p>Get new designs and exclusive deals delivered to your inbox.</p>
+        <form onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+          <input type="email" placeholder="Your email..." required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 MomGraphics. Crafted with 💕 for every mother.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ WISHLIST DRAWER ═══════════ -->
+<div id="wishDrawer">
+  <div class="drawer-header">
+    <h3>♡ My Wishlist</h3>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-body" id="drawerList"></div>
+</div>
+<div id="drawerOverlay"></div>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script src="products.js"></script>
+<script src="shared.js"></script>
+<script>
+  // Render category cards on index
+  (function(){
+    const grid = document.getElementById('catGrid');
+    if(!grid) return;
+    const allCard = `<div class="cat-card aos" onclick="location.href='shop.html'">
+      <span class="cat-icon">🎁</span>
+      <h3>All Designs</h3>
+      <span>${PRODUCTS.length} items</span>
+    </div>`;
+    const cards = CATEGORIES.map(c=>{
+      const count = PRODUCTS.filter(p=>p.c===c.id).length;
+      return `<div class="cat-card aos" onclick="location.href='shop.html#${c.id}'">
+        <span class="cat-icon">${c.icon}</span>
+        <h3>${c.label}</h3>
+        <span>${count} items</span>
+      </div>`;
+    }).join('');
+    grid.innerHTML = allCard + cards;
+    // re-observe new .aos elements
+    initAOS();
+  })();
+
+  // Scroll-to-top button
+  window.addEventListener('scroll', ()=>{
+    document.getElementById('scrollTop')?.classList.toggle('show', window.scrollY > 500);
+  }, {passive:true});
+</script>
+</body>
+</html>

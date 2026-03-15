@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop All Designs – Mother's Day Graphics</title>
+  <meta name="description" content="Browse our full collection of Mother's Day digital graphics. Filter by category, search by name. PNG, SVG, EPS formats.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span>🌸</span> MomGraphics</a>
+    <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+      <li><a href="gift-guide.html">Gift Guide</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="wish-btn" onclick="openDrawer()" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span class="wish-count">0</span>
+      </button>
+      <a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener" class="nav-cta">Browse All →</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ PAGE HERO ═══════════ -->
+<section class="page-hero">
+  <div class="container">
+    <span class="section-label">Our Collection</span>
+    <h1>All Mother's Day Designs</h1>
+    <p>Browse, search, and save your favorites. Instant download in multiple formats.</p>
+  </div>
+</section>
+
+<!-- ═══════════ SHOP LAYOUT ═══════════ -->
+<div class="container">
+  <div class="shop-layout">
+
+    <!-- Sidebar -->
+    <aside class="shop-sidebar">
+      <div class="sidebar-card">
+        <!-- Search -->
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search designs...">
+        </div>
+
+        <h3>Categories</h3>
+        <!-- All -->
+        <div class="cat-link active" data-cat="all" onclick="filterCategory('all')">
+          <span class="cat-label">🎁 All Designs</span>
+          <span class="cat-count" data-cat="all">0</span>
+        </div>
+        <!-- Dynamic categories -->
+        <div id="sidebarCats"></div>
+      </div>
+
+      <!-- Promo card -->
+      <div class="sidebar-card" style="margin-top:1.25rem; text-align:center; background: linear-gradient(135deg, var(--blush-light), var(--cream));">
+        <p style="font-size:.85rem; color:var(--text-light); margin-bottom:.75rem;">Looking for something special?</p>
+        <a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%; font-size:.82rem; padding:.65rem;">
+          Browse 1000+ on Creative Fabrica
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main catalog area -->
+    <main>
+      <div class="catalog-topbar">
+        <span id="catalogInfo"></span>
+      </div>
+      <div class="products-grid" id="catalogGrid"></div>
+      <div class="pagination" id="pagination"></div>
+    </main>
+
+  </div>
+</div>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-section" style="margin-top:3rem;">
+  <div class="container aos">
+    <h2>Can't Find What You Need?</h2>
+    <p>Explore thousands of Mother's Day graphics on Creative Fabrica — new designs added daily.</p>
+    <a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener" class="btn btn-white">Explore on Creative Fabrica →</a>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span>🌸</span> MomGraphics</div>
+        <p>Beautiful digital graphics for Mother's Day. Cards, posters, clipart, and more — crafted with love for every mom.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="gift-guide.html">Gift Guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="shop.html#floral">Floral</a></li>
+          <li><a href="shop.html#quotes">Quotes</a></li>
+          <li><a href="shop.html#kids">Kids</a></li>
+          <li><a href="shop.html#modern">Modern</a></li>
+          <li><a href="shop.html#bundles">Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-newsletter">
+        <h4>Stay Inspired</h4>
+        <p>Get new designs and exclusive deals delivered to your inbox.</p>
+        <form onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+          <input type="email" placeholder="Your email..." required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 MomGraphics. Crafted with 💕 for every mother.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ WISHLIST DRAWER ═══════════ -->
+<div id="wishDrawer">
+  <div class="drawer-header">
+    <h3>♡ My Wishlist</h3>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-body" id="drawerList"></div>
+</div>
+<div id="drawerOverlay"></div>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script src="products.js"></script>
+<script src="shared.js"></script>
+<script>
+  // Populate sidebar categories
+  (function(){
+    const wrap = document.getElementById('sidebarCats');
+    if(!wrap) return;
+    wrap.innerHTML = CATEGORIES.map(c=>
+      `<div class="cat-link" data-cat="${c.id}" onclick="filterCategory('${c.id}')">
+        <span class="cat-label">${c.icon} ${c.label}</span>
+        <span class="cat-count" data-cat="${c.id}">0</span>
+      </div>`
+    ).join('');
+
+    // Check hash for pre-selected category
+    const hash = location.hash.replace('#','');
+    if(hash && CATEGORIES.find(c=>c.id===hash)){
+      filterCategory(hash);
+    }
+  })();
+
+  // Scroll-to-top
+  window.addEventListener('scroll', ()=>{
+    document.getElementById('scrollTop')?.classList.toggle('show', window.scrollY > 500);
+  }, {passive:true});
+</script>
+</body>
+</html>
