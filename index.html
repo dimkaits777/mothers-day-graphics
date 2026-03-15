@@ -1,259 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mother's Day Graphics – Beautiful Digital Designs for Mom</title>
-  <meta name="description" content="Discover beautiful Mother's Day graphics: PNG, SVG, templates for cards, posters, and gifts. Instant download, commercial license.">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mother's Day Graphics – Beautiful Digital Designs for Mom</title>
+<meta name="description" content="6100+ stunning Mother's Day graphics: PNG, SVG, clipart, sublimation designs. Instant download, commercial licence included.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
 </head>
 <body>
 
-<!-- ═══════════ HEADER ═══════════ -->
-<header class="site-header">
-  <div class="header-inner">
-    <a href="index.html" class="logo"><span>🌸</span> MomGraphics</a>
-    <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="shop.html">Shop</a></li>
-      <li><a href="gift-guide.html">Gift Guide</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="wish-btn" onclick="openDrawer()" aria-label="Wishlist">
-        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        <span class="wish-count">0</span>
-      </button>
-      <a href="shop.html" class="nav-cta">Explore All →</a>
-    </div>
+<!-- SEARCH MODAL -->
+<div id="srModal"><div id="srBg"></div>
+<div class="sr-box">
+  <button class="sr-close" onclick="closeSr()">✕</button>
+  <div class="search-w"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <input type="text" id="msi" placeholder="Search designs…"></div>
+  <div id="msr"></div>
+</div></div>
+
+<!-- DRAWER -->
+<div id="drawer">
+  <div class="dr-h"><h3>My Wishlist 🤍</h3><button class="dr-close" onclick="closeD()">✕</button></div>
+  <div class="dr-body" id="dList"></div>
+  <div class="dr-footer"><a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener" class="btn btn-p" style="width:100%;font-size:.82rem;padding:.6rem">Shop All on Creative Fabrica ➜</a></div>
+</div>
+<div id="dOverlay"></div>
+
+<!-- HEADER -->
+<header class="hdr">
+<div class="hdr-in">
+  <a href="index.html" class="logo"><span>🌸</span> Mom Graphics</a>
+  <button class="ham" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="shop.html">Shop All <span class="cnt" id="navCnt"></span></a></li>
+    <li><a href="shop.html?cat=floral">Floral</a></li>
+    <li><a href="shop.html?cat=grandma">Grandmas</a></li>
+    <li><a href="gift-guide.html">Gift Guide</a></li>
+  </ul>
+  <div class="nav-act">
+    <button class="ico-btn" onclick="openSr()" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+    <button class="ico-btn" onclick="openD()" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="var(--rose)"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span class="wc">0</span></button>
   </div>
+</div>
 </header>
 
-<!-- ═══════════ HERO ═══════════ -->
+<!-- HERO -->
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline poster="">
-    <source src="asset/mothers-day-graphics.mp4" type="video/mp4">
-  </video>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <span class="hero-badge">✨ Season 2025 Collection</span>
+  <video class="hero-vid" autoplay muted loop playsinline><source src="asset/mothers-day-graphics.mp4" type="video/mp4"></video>
+  <div class="hero-ov"></div>
+  <div class="hero-c">
+    <span class="hero-badge">✨ <span id="totalBadge"></span> Digital Designs · Instant Download · Commercial Licence</span>
     <h1>Beautiful Graphics for <em>Mother's Day</em></h1>
-    <p class="hero-sub">Discover 30+ stunning digital designs — cards, posters, clipart &amp; bundles. Instant download in PNG, SVG &amp; more.</p>
-    <div class="hero-buttons">
-      <a href="shop.html" class="btn btn-primary">Explore All Designs</a>
-      <a href="gift-guide.html" class="btn btn-outline">Gift Guide</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><strong>30+</strong><small>Unique Designs</small></div>
-      <div class="hero-stat"><strong>6</strong><small>Categories</small></div>
-      <div class="hero-stat"><strong>4</strong><small>File Formats</small></div>
+    <p class="hero-sub">Premium digital designs to create heartfelt cards, posters, mugs, and gifts.<br>Every download is a story — make hers unforgettable.</p>
+    <div class="hero-btns">
+      <a href="shop.html" class="btn btn-p">Explore All <span id="totalBtn"></span> Designs ➜</a>
+      <a href="gift-guide.html" class="btn btn-o">Gift Guide 🎁</a>
     </div>
   </div>
+  <div class="hero-scroll">Scroll<br>↓</div>
 </section>
 
-<!-- ═══════════ CATEGORIES ═══════════ -->
-<section class="categories-strip" id="categories">
-  <div class="container">
-    <div style="text-align:center;" class="aos">
-      <span class="section-label">Shop by Category</span>
-      <h2>Find Your Perfect Design</h2>
-    </div>
-    <div class="cat-grid" id="catGrid"></div>
+<!-- CATEGORIES -->
+<section class="cats-sec" id="categories">
+<div class="container">
+  <div style="text-align:center" class="aos">
+    <span class="sl">Browse & Discover</span>
+    <h2>Find the Perfect Design <em>for Her Vibe</em></h2>
+    <p style="color:var(--tx-lt);margin-top:.5rem"><span id="totalCats"></span> designs across 9 categories — from floral classics to watercolor art and proud grandmas.</p>
   </div>
+  <div class="cats-grid" id="catGrid"></div>
+</div>
 </section>
 
-<!-- ═══════════ POPULAR DESIGNS ═══════════ -->
-<section class="popular-section">
-  <div class="container">
-    <div class="section-header aos">
-      <div>
-        <span class="section-label">Trending Now</span>
-        <h2>Most Popular Designs</h2>
-      </div>
-      <a href="shop.html" class="btn btn-outline">View All →</a>
-    </div>
-    <div class="products-grid" id="popularGrid"></div>
+<!-- BESTSELLERS CAROUSEL -->
+<section class="car-sec">
+<div class="container">
+  <div class="sec-h aos">
+    <div><span class="sl">Hot Right Now</span><h2>Bestsellers: What Makers Are <em>Creating Right Now</em></h2></div>
   </div>
+  <div class="car-wrap">
+    <button class="car-btn l" id="carL">←</button>
+    <div class="car-track" id="carousel"></div>
+    <button class="car-btn r" id="carR">→</button>
+  </div>
+  <div style="text-align:center;margin-top:2rem"><a href="shop.html" class="btn btn-o">View All <span id="totalCar"></span> Designs ➜</a></div>
+</div>
 </section>
 
-<!-- ═══════════ QUOTE ═══════════ -->
-<section class="quote-section">
-  <div class="container aos">
-    <blockquote>"A mother's love is the fuel that enables a normal human being to do the impossible."</blockquote>
-    <p class="quote-author">— Marion C. Garretty</p>
+<!-- QUOTE -->
+<section class="quote-sec">
+<div class="container">
+  <div class="quote-inner aos">
+    <div>
+      <blockquote>"A mother's love is the fuel that enables a normal human being to do the impossible."</blockquote>
+      <cite>— Mother's Day Collection</cite>
+      <p style="color:var(--tx-lt);margin-top:1rem;font-size:.92rem">Discover beautiful quote designs ready to be printed on cards, mugs, posters, and apparel.</p>
+      <a href="shop.html?cat=quotes" class="btn btn-p" style="margin-top:1rem;font-size:.85rem">Shop Quote Designs ➜</a>
+    </div>
+    <div class="quote-img"><img src="https://www.creativefabrica.com/wp-content/uploads/2025/02/10/Mothers-Day-Gifts-Clipart-Bundle-Graphics-115686973-1.jpg" alt="Mother's Day Graphics" loading="lazy"></div>
   </div>
+</div>
 </section>
 
-<!-- ═══════════ WHY US ═══════════ -->
-<section class="why-section">
-  <div class="container">
-    <div style="text-align:center;" class="aos">
-      <span class="section-label">Why Choose Us</span>
-      <h2>Quality You Can Trust</h2>
-    </div>
-    <div class="why-grid">
-      <div class="why-card aos">
-        <div class="why-icon">🎨</div>
-        <h3>Premium Quality</h3>
-        <p>Every design is crafted by professional artists with attention to detail and current trends.</p>
-      </div>
-      <div class="why-card aos">
-        <div class="why-icon">⚡</div>
-        <h3>Instant Download</h3>
-        <p>Get your files immediately after purchase. No waiting, no shipping — start creating right away.</p>
-      </div>
-      <div class="why-card aos">
-        <div class="why-icon">📄</div>
-        <h3>Multiple Formats</h3>
-        <p>PNG, SVG, EPS, DXF — everything you need for cards, prints, crafts, and digital projects.</p>
-      </div>
-      <div class="why-card aos">
-        <div class="why-icon">✅</div>
-        <h3>Commercial License</h3>
-        <p>Use designs for personal and commercial projects. Perfect for small businesses and Etsy shops.</p>
-      </div>
-    </div>
+<!-- QUIZ -->
+<section class="quiz-sec">
+<div class="container">
+  <div style="text-align:center" class="aos">
+    <span class="sl">2-Minute Gift Quiz</span>
+    <h2>Not Sure What to Create?</h2>
   </div>
+  <div class="quiz-box aos" id="quizBox">
+    <span style="font-size:2.5rem">🎁</span>
+    <h3>Find the Perfect Design</h3>
+    <p style="color:var(--tx-lt);margin:.5rem 0 1.5rem">Answer 2 quick questions — we'll find your ideal design.</p>
+    <button class="quiz-start-btn" onclick="startQuiz()">Take the Gift Quiz ✨</button>
+    <div id="quizBody"></div>
+  </div>
+</div>
 </section>
 
-<!-- ═══════════ GIFT GUIDE TEASER ═══════════ -->
-<section class="gift-teaser">
-  <div class="container">
-    <div class="section-header aos">
-      <div>
-        <span class="section-label">Inspiration</span>
-        <h2>Gift Ideas for Mom</h2>
-      </div>
-      <a href="gift-guide.html" class="btn btn-outline">Full Gift Guide →</a>
-    </div>
-    <div class="gift-teaser-grid">
-      <div class="gift-card aos">
-        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&h=400&fit=crop" alt="Handmade card" loading="lazy">
-        <div class="gift-card-body">
-          <span class="limited-badge">Best for Handmade</span>
-          <h3>Custom Greeting Card</h3>
-          <p>Print a beautiful design on cardstock for a heartfelt, personal touch.</p>
-        </div>
-      </div>
-      <div class="gift-card aos">
-        <img src="https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?w=600&h=400&fit=crop" alt="Framed poster" loading="lazy">
-        <div class="gift-card-body">
-          <span class="limited-badge">Seasonal Favorite</span>
-          <h3>Framed Art Print</h3>
-          <p>Turn any graphic into a stunning wall art piece for Mom's favorite room.</p>
-        </div>
-      </div>
-      <div class="gift-card aos">
-        <img src="https://images.unsplash.com/photo-1556103255-4443dbf8ea38?w=600&h=400&fit=crop" alt="Custom mug" loading="lazy">
-        <div class="gift-card-body">
-          <span class="limited-badge">Limited Edition</span>
-          <h3>Personalized Mug</h3>
-          <p>Use sublimation or heat transfer to create a one-of-a-kind mug she'll love.</p>
-        </div>
-      </div>
-    </div>
+<!-- WHY US -->
+<section class="why-sec">
+<div class="container">
+  <div style="text-align:center" class="aos">
+    <span class="sl">Why Digital Graphics?</span>
+    <h2>Three Reasons Makers <em>Love These Designs</em></h2>
   </div>
+  <div class="why-grid">
+    <div class="why-card aos"><div class="why-icon">⚡</div><h3>Instant Delivery</h3><p>Start creating in minutes. Download immediately after purchase — no waiting, no shipping.</p></div>
+    <div class="why-card aos"><div class="why-icon">📄</div><h3>All Popular Formats</h3><p>PNG, SVG, EPS, DXF, AI and more. Compatible with Cricut, Silhouette, Canva, Photoshop, and all design tools.</p></div>
+    <div class="why-card aos"><div class="why-icon">🏪</div><h3>Commercial Licence</h3><p>Create and sell. All designs include a commercial licence for your handmade physical products.</p></div>
+  </div>
+</div>
 </section>
 
-<!-- ═══════════ FREE SAMPLE CTA ═══════════ -->
-<section class="cta-section">
-  <div class="container aos">
-    <h2>Get a Free Mother's Day Card</h2>
-    <p>Download a beautiful sample design — absolutely free. No signup required!</p>
-    <a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener" class="btn btn-white">Download Free Sample</a>
-    <div class="cta-form">
-      <input type="email" placeholder="Your email for exclusive deals...">
-      <button class="btn btn-white" style="padding:.8rem 1.6rem;" onclick="alert('Thank you! Check your inbox for exclusive deals.')">Subscribe</button>
-    </div>
+<!-- GIFT GUIDE TEASER -->
+<section class="guide-sec">
+<div class="container">
+  <div class="sec-h aos">
+    <div><span class="sl">Ideas & Inspiration</span><h2>Gift Guide</h2></div>
   </div>
+  <div class="guide-grid">
+    <a href="gift-guide.html" class="guide-card aos">
+      <img src="https://www.creativefabrica.com/wp-content/uploads/2025/02/10/Mothers-Day-Gifts-Clipart-Bundle-Graphics-115686973-1.jpg" alt="Gift Guide" loading="lazy">
+      <div class="guide-card-b"><span class="guide-tag">Gift Guide</span><h3>10 Quick & Easy Mother's Day Gifts You Can Create Today</h3><p>From greeting cards to custom mugs — find the best projects to personalize with graphics.</p></div>
+    </a>
+    <a href="shop.html?cat=grandma" class="guide-card aos">
+      <img src="https://www.creativefabrica.com/wp-content/uploads/2022/04/12/9-Mothers-Day-Background-Graphics-28850819-1.jpg" alt="Grandma Designs" loading="lazy">
+      <div class="guide-card-b"><span class="guide-tag">Grandma Edition</span><h3>Grammy, Nana, Mimi & More — Grandma Designs</h3><p>Grandma names are deeply personal. We have them all.</p></div>
+    </a>
+    <a href="shop.html?cat=watercolor" class="guide-card aos">
+      <img src="https://www.creativefabrica.com/wp-content/uploads/2025/04/28/Rustic-Mothers-Day-Vector-Bundle-SVG-Graphics-120840737-1.png" alt="Watercolor" loading="lazy">
+      <div class="guide-card-b"><span class="guide-tag">Watercolor Art</span><h3>Hand-Painted Watercolor Clipart & Illustrations</h3><p>Beautiful hand-painted designs for cards, prints, and scrapbooking.</p></div>
+    </a>
+  </div>
+</div>
 </section>
 
-<!-- ═══════════ FOOTER ═══════════ -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo"><span>🌸</span> MomGraphics</div>
-        <p>Beautiful digital graphics for Mother's Day. Cards, posters, clipart, and more — crafted with love for every mom.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="shop.html">Shop All</a></li>
-          <li><a href="gift-guide.html">Gift Guide</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Categories</h4>
-        <ul>
-          <li><a href="shop.html#floral">Floral</a></li>
-          <li><a href="shop.html#quotes">Quotes</a></li>
-          <li><a href="shop.html#kids">Kids</a></li>
-          <li><a href="shop.html#modern">Modern</a></li>
-          <li><a href="shop.html#bundles">Bundles</a></li>
-        </ul>
-      </div>
-      <div class="footer-col footer-newsletter">
-        <h4>Stay Inspired</h4>
-        <p>Get new designs and exclusive deals delivered to your inbox.</p>
-        <form onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
-          <input type="email" placeholder="Your email..." required>
-          <button type="submit">Join</button>
-        </form>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 MomGraphics. Crafted with 💕 for every mother.</p>
-    </div>
+<!-- ABOUT -->
+<section class="about-sec" id="about">
+<div class="container aos" style="text-align:center">
+  <span class="sl">Our Story</span>
+  <h2>Made with Love, <em>Given with Heart</em></h2>
+  <p>We believe the best gifts are made with time, creativity, and love. Our curated catalog of <span id="totalAbout"></span> digital graphics helps you create personalized cards, home décor, apparel, and keepsakes that will be cherished forever. Whether she's a floral lover, a proud grandma, or a devoted animal mom — we have a design that speaks to her heart.</p>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+<div class="container aos">
+  <h2>Ready to Create Something Beautiful?</h2>
+  <p>Browse all <span id="totalCta"></span> designs from the Mother's Day collection. Every design comes with instant download and a commercial licence.</p>
+  <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
+    <a href="shop.html" class="btn btn-w">Browse All Designs ➜</a>
+    <a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener" class="btn btn-o" style="border-color:rgba(255,255,255,.3);color:#fff">Shop on Creative Fabrica</a>
   </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ftr">
+<div class="container">
+  <div class="ftr-grid">
+    <div><div class="logo"><span>🌸</span> Mom Graphics</div><p><span id="totalFtr"></span> premium digital graphics for Mother's Day. Handmade gifts start here.</p><p class="ftr-aff" style="text-align:left;margin-top:.5rem">Affiliate disclosure: all product links lead to Creative Fabrica. We may earn a small commission at no extra cost to you.</p></div>
+    <div><h4>Shop</h4><ul id="ftrCats"></ul></div>
+    <div><h4>Inspire</h4><ul>
+      <li><a href="gift-guide.html">Gift Guide</a></li>
+      <li><a href="gift-guide.html#cards">Greeting Cards</a></li>
+      <li><a href="gift-guide.html#mugs">Custom Mugs</a></li>
+      <li><a href="gift-guide.html#prints">Art Prints</a></li>
+    </ul></div>
+    <div><h4>Info</h4><ul>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener">Creative Fabrica</a></li>
+    </ul></div>
+  </div>
+  <div class="ftr-bot"><p>&copy; 2026 Mom Graphics. All rights reserved.<br><span id="totalBot"></span> designs · Instant download · Commercial licence included</p></div>
+</div>
 </footer>
 
-<!-- ═══════════ WISHLIST DRAWER ═══════════ -->
-<div id="wishDrawer">
-  <div class="drawer-header">
-    <h3>♡ My Wishlist</h3>
-    <button class="drawer-close" onclick="closeDrawer()">✕</button>
-  </div>
-  <div class="drawer-body" id="drawerList"></div>
+<!-- MOBILE BAR -->
+<div id="mobBar">
+  <a href="index.html"><span>🏠</span>Home</a>
+  <a href="shop.html"><span>🛍</span>Shop</a>
+  <button onclick="openSr()"><span>🔍</span>Search</button>
+  <button onclick="openD()"><span>🤍</span>Wishlist</button>
+  <a href="gift-guide.html"><span>🎁</span>Guide</a>
 </div>
-<div id="drawerOverlay"></div>
 
-<!-- Scroll to top -->
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="toTop">↑</button>
 
 <script src="products.js"></script>
 <script src="shared.js"></script>
 <script>
-  // Render category cards on index
+  // Fill totals
+  const total=P.length;
+  document.querySelectorAll('#totalBadge,#totalBtn,#totalCats,#totalCar,#totalAbout,#totalCta,#totalFtr,#totalBot').forEach(e=>e.textContent=total);
+  document.getElementById('navCnt').textContent=total;
+  // Category grid
   (function(){
-    const grid = document.getElementById('catGrid');
-    if(!grid) return;
-    const allCard = `<div class="cat-card aos" onclick="location.href='shop.html'">
-      <span class="cat-icon">🎁</span>
-      <h3>All Designs</h3>
-      <span>${PRODUCTS.length} items</span>
-    </div>`;
-    const cards = CATEGORIES.map(c=>{
-      const count = PRODUCTS.filter(p=>p.c===c.id).length;
-      return `<div class="cat-card aos" onclick="location.href='shop.html#${c.id}'">
-        <span class="cat-icon">${c.icon}</span>
-        <h3>${c.label}</h3>
-        <span>${count} items</span>
-      </div>`;
-    }).join('');
-    grid.innerHTML = allCard + cards;
-    // re-observe new .aos elements
-    initAOS();
+    const g=document.getElementById('catGrid');if(!g)return;
+    let h=`<a href="shop.html" class="cat-card aos"><span class="ci">✨</span><span class="ct">All Designs</span><span class="cn">${total}</span></a>`;
+    CATS.forEach(c=>{
+      const n=P.filter(p=>CN[p[3]]===c.id).length;
+      h+=`<a href="shop.html?cat=${c.id}" class="cat-card aos"><span class="ci">${c.icon}</span><span class="ct">${c.label}</span><span class="cn">${n}</span></a>`;
+    });
+    g.innerHTML=h;
+    // re-init AOS for new elements
+    const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.12});
+    g.querySelectorAll('.aos').forEach(el=>obs.observe(el));
   })();
-
-  // Scroll-to-top button
-  window.addEventListener('scroll', ()=>{
-    document.getElementById('scrollTop')?.classList.toggle('show', window.scrollY > 500);
-  }, {passive:true});
+  // Footer cats
+  (function(){
+    const ul=document.getElementById('ftrCats');if(!ul)return;
+    let h=`<li><a href="shop.html">All ${total} Designs</a></li>`;
+    CATS.forEach(c=>h+=`<li><a href="shop.html?cat=${c.id}">${c.label}</a></li>`);
+    ul.innerHTML=h;
+  })();
 </script>
 </body>
 </html>

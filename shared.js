@@ -1,263 +1,199 @@
 /* ============================================================
-   Mother's Day Graphics – Shared JavaScript
-   Wishlist, search, filtering, pagination, UI helpers
+   Mother's Day Graphics — Shared JavaScript
    ============================================================ */
 
-/* ── Wishlist (localStorage) ─────────────────────────────── */
-const Wishlist = {
-  KEY: 'mdg_wishlist',
-  _get()   { try { return JSON.parse(localStorage.getItem(this.KEY)) || []; } catch { return []; } },
-  _set(arr){ localStorage.setItem(this.KEY, JSON.stringify(arr)); },
-  has(title){ return this._get().includes(title); },
-  toggle(title){
-    const list = this._get();
-    const idx  = list.indexOf(title);
-    if (idx > -1) list.splice(idx, 1); else list.push(title);
-    this._set(list);
-    this.updateBadge();
-    return idx === -1;               // true = added
-  },
-  all()    { return this._get(); },
-  count()  { return this._get().length; },
-  remove(title){ const l = this._get().filter(t=>t!==title); this._set(l); this.updateBadge(); },
-  updateBadge(){
-    document.querySelectorAll('.wish-count').forEach(el=>{
-      const c = this.count();
-      el.textContent = c;
-      el.style.display = c ? 'flex' : 'none';
-    });
-  }
+/* ── Wishlist ─────────────────────────────────────────────── */
+const W={
+  K:'mdg_wish',
+  g(){try{return JSON.parse(localStorage.getItem(this.K))||[]}catch{return[]}},
+  s(a){localStorage.setItem(this.K,JSON.stringify(a))},
+  has(t){return this.g().includes(t)},
+  toggle(t){const l=this.g(),i=l.indexOf(t);if(i>-1)l.splice(i,1);else l.push(t);this.s(l);this.badge();return i===-1},
+  rm(t){this.s(this.g().filter(x=>x!==t));this.badge()},
+  badge(){document.querySelectorAll('.wc').forEach(e=>{const c=this.g().length;e.textContent=c;e.style.display=c?'flex':'none'})}
 };
 
-/* ── Drawer (wishlist side panel) ────────────────────────── */
-function openDrawer(){
-  const d = document.getElementById('wishDrawer');
-  if (!d) return;
-  d.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  renderDrawerItems();
+function prodImg(p){return IB+p[1]}
+function prodUrl(p){return AB+p[2]+AS}
+function prodCat(p){return CN[p[3]]}
+
+function card(p,i){
+  const h=W.has(p[0])?'active':'';
+  const safeT=p[0].replace(/'/g,"\\'");
+  return`<div class="pc" style="animation-delay:${Math.min(i*30,600)}ms">
+<div class="pc-img"><img src="${prodImg(p)}" alt="${p[0]}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22><rect fill=%22%23f8f0f4%22 width=%22400%22 height=%22400%22/><text x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22%23dbb%22 font-size=%2240%22>🌸</text></svg>'">
+<button class="pc-h ${h}" data-t="${safeT}" onclick="tglW(this)" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+</div>
+<div class="pc-b"><h3 class="pc-t">${p[0]}</h3>
+<a href="${prodUrl(p)}" target="_blank" rel="noopener" class="pc-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>CLICK HERE AND DOWNLOAD</a>
+</div></div>`;
 }
-function closeDrawer(){
-  const d = document.getElementById('wishDrawer');
-  if (!d) return;
-  d.classList.remove('open');
-  document.body.style.overflow = '';
+
+function tglW(btn){
+  const t=btn.dataset.t;const added=W.toggle(t);
+  document.querySelectorAll('.pc-h').forEach(b=>{if(b.dataset.t===t)b.classList.toggle('active',added)});
 }
-function renderDrawerItems(){
-  const list = document.getElementById('drawerList');
-  if (!list) return;
-  const items = Wishlist.all();
-  if (!items.length){ list.innerHTML = '<p class="drawer-empty">Your wishlist is empty.<br>Tap the ♡ on any design to save it here.</p>'; return; }
-  list.innerHTML = items.map(title=>{
-    const p = PRODUCTS.find(x=>x.t===title);
-    return `<div class="drawer-item">
-      <img src="${p?p.i:''}'" alt="" loading="lazy">
-      <div class="drawer-item-info">
-        <span class="drawer-item-title">${title}</span>
-        ${p?'<span class="drawer-item-price">'+p.price+'</span>':''}
-      </div>
-      <button class="drawer-remove" onclick="removeWish('${title.replace(/'/g,"\\'")}')">✕</button>
-    </div>`;
+
+/* ── Drawer ───────────────────────────────────────────────── */
+function openD(){const d=document.getElementById('drawer');if(!d)return;d.classList.add('open');document.body.style.overflow='hidden';renderD()}
+function closeD(){const d=document.getElementById('drawer');if(!d)return;d.classList.remove('open');document.body.style.overflow=''}
+function renderD(){
+  const el=document.getElementById('dList');if(!el)return;
+  const items=W.g();
+  if(!items.length){el.innerHTML='<div class="d-empty"><span style="font-size:2.5rem">🌸</span><p>Your wishlist is empty.<br>Heart any design to save it.</p><p style="margin-top:.5rem;font-size:.85rem;color:var(--muted)">Ready to buy? Each design opens on Creative Fabrica.</p></div>';return}
+  el.innerHTML=items.map(t=>{
+    const p=P.find(x=>x[0]===t);
+    return`<div class="d-item"><img src="${p?prodImg(p):''}" alt="" loading="lazy"><div class="d-info"><span class="d-title">${t}</span>${p?`<a href="${prodUrl(p)}" target="_blank" rel="noopener" class="d-link">Open →</a>`:''}</div><button class="d-rm" onclick="rmW('${t.replace(/'/g,"\\'")}')">✕</button></div>`;
   }).join('');
 }
-function removeWish(title){
-  Wishlist.remove(title);
-  renderDrawerItems();
-  // refresh hearts on page
-  document.querySelectorAll('.card-wish').forEach(btn=>{
-    if(btn.dataset.title===title) btn.classList.remove('active');
-  });
+function rmW(t){W.rm(t);renderD();document.querySelectorAll('.pc-h').forEach(b=>{if(b.dataset.t===t)b.classList.remove('active')})}
+
+/* ── Catalog ──────────────────────────────────────────────── */
+let S={cat:'all',q:'',page:1,pp:24};
+
+function filtered(){
+  let l=[...P];
+  if(S.cat!=='all')l=l.filter(p=>CN[p[3]]===S.cat);
+  if(S.q){const q=S.q.toLowerCase();l=l.filter(p=>p[0].toLowerCase().includes(q))}
+  return l;
 }
 
-/* ── Product Card HTML ───────────────────────────────────── */
-function productCard(p, idx){
-  const hearted = Wishlist.has(p.t) ? 'active' : '';
-  const formats = p.f.map(f=>`<span class="fmt-tag">${f}</span>`).join('');
-  return `
-  <div class="product-card" style="animation-delay:${idx*0.04}s">
-    <div class="card-img-wrap">
-      <img src="${p.i}" alt="${p.t}" loading="lazy">
-      <button class="card-wish ${hearted}" data-title="${p.t}" onclick="toggleWish(this)" aria-label="Add to wishlist">
-        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-      </button>
-      <div class="card-badge">${p.price}</div>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title">${p.t}</h3>
-      <div class="card-meta">
-        <span class="card-downloads"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> ${p.dl.toLocaleString()}</span>
-        <div class="card-formats">${formats}</div>
-      </div>
-      <a href="${p.a}" target="_blank" rel="noopener" class="card-btn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        CLICK HERE AND DOWNLOAD
-      </a>
-    </div>
-  </div>`;
+function renderCat(){
+  const grid=document.getElementById('grid'),info=document.getElementById('info');if(!grid)return;
+  const f=filtered(),total=f.length,pages=Math.ceil(total/S.pp)||1;
+  if(S.page>pages)S.page=pages;
+  const start=(S.page-1)*S.pp,slice=f.slice(start,start+S.pp);
+  grid.innerHTML=slice.length?slice.map((p,i)=>card(p,i)).join(''):'<p class="no-res">🌸 No designs found. Try a different search or category.</p>';
+  if(info)info.textContent=`Showing ${start+1}–${Math.min(start+S.pp,total)} of ${total}`;
+  renderPag(pages);updCC();
 }
 
-function toggleWish(btn){
-  const title = btn.dataset.title;
-  const added = Wishlist.toggle(title);
-  btn.classList.toggle('active', added);
-  // sync all same-title hearts on page
-  document.querySelectorAll(`.card-wish[data-title="${title}"]`).forEach(b=>b.classList.toggle('active',added));
+function renderPag(pages){
+  const w=document.getElementById('pag');if(!w)return;
+  if(pages<=1){w.innerHTML='';return}
+  let h=`<button class="pg ${S.page===1?'dis':''}" onclick="goP(${S.page-1})">‹</button>`;
+  const r=[];for(let i=1;i<=pages;i++){if(i===1||i===pages||Math.abs(i-S.page)<=2)r.push(i)}
+  let prev=0;r.forEach(i=>{if(prev&&i-prev>1)h+='<span class="pg-dot">…</span>';h+=`<button class="pg ${S.page===i?'act':''}" onclick="goP(${i})">${i}</button>`;prev=i});
+  h+=`<button class="pg ${S.page===pages?'dis':''}" onclick="goP(${S.page+1})">›</button>`;
+  w.innerHTML=h;
 }
 
-/* ── Catalog Engine ──────────────────────────────────────── */
-let catalogState = {
-  category: 'all',
-  search: '',
-  page: 1,
-  perPage: 24
-};
+function goP(n){const pages=Math.ceil(filtered().length/S.pp)||1;if(n<1||n>pages)return;S.page=n;renderCat();document.getElementById('grid')?.scrollIntoView({behavior:'smooth',block:'start'})}
 
-function getFilteredProducts(){
-  let list = [...PRODUCTS];
-  if(catalogState.category !== 'all'){
-    list = list.filter(p=>p.c === catalogState.category);
-  }
-  if(catalogState.search){
-    const q = catalogState.search.toLowerCase();
-    list = list.filter(p=>p.t.toLowerCase().includes(q));
-  }
-  return list;
+function setCat(c){
+  S.cat=c;S.page=1;renderCat();
+  document.querySelectorAll('.cl').forEach(el=>el.classList.toggle('act',el.dataset.cat===c));
+  document.querySelector('.sidebar')?.classList.remove('mob-open');
+  document.getElementById('sidebarOverlay')?.classList.remove('show');
 }
 
-function renderCatalog(){
-  const grid = document.getElementById('catalogGrid');
-  const info = document.getElementById('catalogInfo');
-  if(!grid) return;
-
-  const filtered = getFilteredProducts();
-  const total    = filtered.length;
-  const pages    = Math.ceil(total / catalogState.perPage) || 1;
-  if(catalogState.page > pages) catalogState.page = pages;
-
-  const start = (catalogState.page - 1) * catalogState.perPage;
-  const slice = filtered.slice(start, start + catalogState.perPage);
-
-  grid.innerHTML = slice.length
-    ? slice.map((p,i)=>productCard(p,i)).join('')
-    : '<p class="no-results">No designs found. Try a different search or category.</p>';
-
-  if(info) info.textContent = `Showing ${slice.length} of ${total} designs`;
-
-  renderPagination(pages);
-  updateCategoryCounts();
+function updCC(){
+  CATS.forEach(c=>{const n=P.filter(p=>CN[p[3]]===c.id).length;document.querySelectorAll(`.cc[data-cat="${c.id}"]`).forEach(e=>e.textContent=n)});
+  document.querySelectorAll('.cc[data-cat="all"]').forEach(e=>e.textContent=P.length);
 }
 
-function renderPagination(pages){
-  const wrap = document.getElementById('pagination');
-  if(!wrap) return;
-  if(pages <= 1){ wrap.innerHTML = ''; return; }
-  let html = '';
-  html += `<button class="page-btn ${catalogState.page===1?'disabled':''}" onclick="goPage(${catalogState.page-1})">‹</button>`;
-  for(let i=1;i<=pages;i++){
-    html += `<button class="page-btn ${catalogState.page===i?'active':''}" onclick="goPage(${i})">${i}</button>`;
-  }
-  html += `<button class="page-btn ${catalogState.page===pages?'disabled':''}" onclick="goPage(${catalogState.page+1})">›</button>`;
-  wrap.innerHTML = html;
-}
-
-function goPage(n){
-  const pages = Math.ceil(getFilteredProducts().length / catalogState.perPage) || 1;
-  if(n<1||n>pages) return;
-  catalogState.page = n;
-  renderCatalog();
-  document.getElementById('catalogGrid')?.scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-function filterCategory(cat){
-  catalogState.category = cat;
-  catalogState.page = 1;
-  renderCatalog();
-  // highlight active cat in sidebar
-  document.querySelectorAll('.cat-link').forEach(el=>{
-    el.classList.toggle('active', el.dataset.cat === cat);
-  });
-}
-
-function updateCategoryCounts(){
-  CATEGORIES.forEach(cat=>{
-    const count = PRODUCTS.filter(p=>p.c===cat.id).length;
-    const el = document.querySelector(`.cat-count[data-cat="${cat.id}"]`);
-    if(el) el.textContent = count;
-  });
-  const allEl = document.querySelector('.cat-count[data-cat="all"]');
-  if(allEl) allEl.textContent = PRODUCTS.length;
-}
-
-/* ── Search ──────────────────────────────────────────────── */
+/* ── Search ───────────────────────────────────────────────── */
 function initSearch(){
-  const input = document.getElementById('searchInput');
-  if(!input) return;
-  let timer;
-  input.addEventListener('input', ()=>{
-    clearTimeout(timer);
-    timer = setTimeout(()=>{
-      catalogState.search = input.value.trim();
-      catalogState.page = 1;
-      renderCatalog();
-    }, 300);
-  });
+  const inp=document.getElementById('searchInput');
+  if(inp){let t;inp.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(()=>{S.q=inp.value.trim();S.page=1;renderCat()},250)})}
+  const mi=document.getElementById('msi');
+  if(mi){let t2;mi.addEventListener('input',()=>{clearTimeout(t2);t2=setTimeout(()=>{
+    const q=mi.value.trim().toLowerCase();
+    const res=q?P.filter(p=>p[0].toLowerCase().includes(q)).slice(0,12):[];
+    const wr=document.getElementById('msr');if(!wr)return;
+    wr.innerHTML=res.length?res.map((p,i)=>card(p,i)).join(''):(q?'<p class="no-res">No results found</p>':'');
+  },250)})}
+}
+function openSr(){const m=document.getElementById('srModal');if(!m)return;m.classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('msi')?.focus(),100)}
+function closeSr(){const m=document.getElementById('srModal');if(!m)return;m.classList.remove('open');document.body.style.overflow=''}
+
+/* ── Carousel ─────────────────────────────────────────────── */
+function initCarousel(){
+  const t=document.getElementById('carousel');if(!t)return;
+  const s=[...P].sort(()=>Math.random()-.5).slice(0,12);
+  t.innerHTML=s.map((p,i)=>card(p,i)).join('');
+  document.getElementById('carL')?.addEventListener('click',()=>t.scrollBy({left:-320,behavior:'smooth'}));
+  document.getElementById('carR')?.addEventListener('click',()=>t.scrollBy({left:320,behavior:'smooth'}));
 }
 
-/* ── Popular carousel (index page) ───────────────────────── */
-function renderPopular(){
-  const wrap = document.getElementById('popularGrid');
-  if(!wrap) return;
-  // sort by downloads, pick top 8
-  const top = [...PRODUCTS].sort((a,b)=>b.dl-a.dl).slice(0,8);
-  wrap.innerHTML = top.map((p,i)=>productCard(p,i)).join('');
+/* ── Gift guide featured products ─────────────────────────── */
+function initGiftProducts(){
+  const w=document.getElementById('giftProducts');if(!w)return;
+  const s=[...P].sort(()=>Math.random()-.5).slice(0,8);
+  w.innerHTML=s.map((p,i)=>card(p,i)).join('');
 }
 
-/* ── Mobile nav toggle ───────────────────────────────────── */
-function toggleMobileNav(){
-  document.querySelector('.nav-links')?.classList.toggle('open');
+/* ── Quiz ─────────────────────────────────────────────────── */
+let quiz={step:0,who:'',style:''};
+function startQuiz(){quiz={step:1,who:'',style:''};renderQuiz()}
+function quizPick(val){
+  if(quiz.step===1){quiz.who=val;quiz.step=2;renderQuiz()}
+  else if(quiz.step===2){quiz.style=val;quiz.step=3;renderQuiz()}
+}
+function renderQuiz(){
+  const w=document.getElementById('quizBody');if(!w)return;
+  if(quiz.step===1){
+    w.innerHTML=`<h3>Who are you making this for?</h3><p class="quiz-step">Step 1 of 2</p>
+    <div class="quiz-opts"><button onclick="quizPick('mom')">👩 Mom</button><button onclick="quizPick('grandma')">👵 Grandma</button><button onclick="quizPick('newmom')">👶 New Mom</button><button onclick="quizPick('pet')">🐾 Pet Mom</button></div>`;
+  } else if(quiz.step===2){
+    w.innerHTML=`<h3>What's her style?</h3><p class="quiz-step">Step 2 of 2</p>
+    <div class="quiz-opts"><button onclick="quizPick('floral')">🌺 Floral & Elegant</button><button onclick="quizPick('funny')">😂 Funny & Relatable</button><button onclick="quizPick('modern')">✨ Modern & Minimal</button><button onclick="quizPick('watercolor')">🎨 Watercolor Art</button></div>`;
+  } else if(quiz.step===3){
+    // Map answers to category
+    let cat='clipart';
+    if(quiz.who==='grandma')cat='grandma';
+    else if(quiz.who==='newmom')cat='kids';
+    else if(quiz.who==='pet')cat='animals';
+    else if(quiz.style==='floral')cat='floral';
+    else if(quiz.style==='modern')cat='modern';
+    else if(quiz.style==='watercolor')cat='watercolor';
+    else if(quiz.style==='funny')cat='quotes';
+    const results=P.filter(p=>CN[p[3]]===cat).sort(()=>Math.random()-.5).slice(0,4);
+    w.innerHTML=`<h3>Perfect Picks for Her ✨</h3><p class="quiz-step">Based on your answers:</p>
+    <div class="quiz-results">${results.map((p,i)=>card(p,i)).join('')}</div>
+    <div class="quiz-actions"><button class="qbtn-sec" onclick="startQuiz()">Try Again</button>
+    <a href="shop.html?cat=${cat}" class="qbtn-pri">See All ${cat} Designs ➜</a></div>`;
+  }
 }
 
-/* ── Scroll-based header ─────────────────────────────────── */
-function initStickyHeader(){
-  const header = document.querySelector('.site-header');
-  if(!header) return;
-  let last = 0;
-  window.addEventListener('scroll', ()=>{
-    const y = window.scrollY;
-    header.classList.toggle('scrolled', y > 60);
-    last = y;
-  }, {passive:true});
+/* ── Mobile helpers ───────────────────────────────────────── */
+function toggleNav(){document.querySelector('.nav-links')?.classList.toggle('open')}
+function toggleSB(){
+  document.querySelector('.sidebar')?.classList.toggle('mob-open');
+  document.getElementById('sidebarOverlay')?.classList.toggle('show');
 }
 
-/* ── Animate on scroll ───────────────────────────────────── */
-function initAOS(){
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add('aos-in');
-        observer.unobserve(e.target);
-      }
-    });
-  }, {threshold:0.15});
-  document.querySelectorAll('.aos').forEach(el=>observer.observe(el));
-}
-
-/* ── Init ────────────────────────────────────────────────── */
-document.addEventListener('DOMContentLoaded', ()=>{
-  Wishlist.updateBadge();
-  initStickyHeader();
-  initAOS();
+/* ── Init ─────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded',()=>{
+  W.badge();
+  // Sticky header
+  const hdr=document.querySelector('.hdr');
+  if(hdr)window.addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>50),{passive:true});
+  // AOS
+  const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.aos').forEach(el=>obs.observe(el));
+  // Scroll top
+  const tt=document.getElementById('toTop');
+  if(tt){window.addEventListener('scroll',()=>tt.classList.toggle('show',scrollY>600),{passive:true});tt.onclick=()=>window.scrollTo({top:0,behavior:'smooth'})}
+  // Mobile bottom bar
+  const mm=document.getElementById('mobBar');
+  if(mm)window.addEventListener('scroll',()=>mm.classList.toggle('show',scrollY>300),{passive:true});
+  
   initSearch();
-
-  // if catalog page
-  if(document.getElementById('catalogGrid')){
-    renderCatalog();
+  initCarousel();
+  initGiftProducts();
+  // Catalog
+  if(document.getElementById('grid')){
+    const u=new URLSearchParams(location.search);
+    const c=u.get('cat');
+    if(c&&CATS.find(x=>x.id===c)){S.cat=c;document.querySelectorAll('.cl').forEach(el=>el.classList.toggle('act',el.dataset.cat===c))}
+    renderCat();
   }
-  // if index page popular section
-  if(document.getElementById('popularGrid')){
-    renderPopular();
-  }
-
-  // drawer overlay close
-  document.getElementById('drawerOverlay')?.addEventListener('click', closeDrawer);
+  // Drawer overlay
+  document.getElementById('dOverlay')?.addEventListener('click',closeD);
+  document.getElementById('srBg')?.addEventListener('click',closeSr);
+  document.getElementById('sidebarOverlay')?.addEventListener('click',()=>{
+    document.querySelector('.sidebar')?.classList.remove('mob-open');
+    document.getElementById('sidebarOverlay')?.classList.remove('show');
+  });
 });

@@ -1,305 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gift Guide – Mother's Day Graphics</title>
-  <meta name="description" content="10 creative gift ideas using Mother's Day graphics. Handmade cards, custom mugs, framed art, and more!">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gift Guide: 10 Mother's Day Gift Ideas | Mom Graphics</title>
+<meta name="description" content="10 creative gift ideas using Mother's Day graphics. Handmade cards, custom mugs, framed art, tote bags, and more!">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
 </head>
 <body>
 
-<!-- ═══════════ HEADER ═══════════ -->
-<header class="site-header">
-  <div class="header-inner">
-    <a href="index.html" class="logo"><span>🌸</span> MomGraphics</a>
-    <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="shop.html">Shop</a></li>
-      <li><a href="gift-guide.html" class="active">Gift Guide</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="wish-btn" onclick="openDrawer()" aria-label="Wishlist">
-        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-        <span class="wish-count">0</span>
-      </button>
-      <a href="shop.html" class="nav-cta">Shop Now →</a>
-    </div>
+<!-- SEARCH MODAL -->
+<div id="srModal"><div id="srBg"></div>
+<div class="sr-box">
+  <button class="sr-close" onclick="closeSr()">✕</button>
+  <div class="search-w"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <input type="text" id="msi" placeholder="Search designs…"></div>
+  <div id="msr"></div>
+</div></div>
+
+<!-- DRAWER -->
+<div id="drawer">
+  <div class="dr-h"><h3>My Wishlist 🤍</h3><button class="dr-close" onclick="closeD()">✕</button></div>
+  <div class="dr-body" id="dList"></div>
+  <div class="dr-footer"><a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener" class="btn btn-p" style="width:100%;font-size:.82rem;padding:.6rem">Shop on Creative Fabrica ➜</a></div>
+</div>
+<div id="dOverlay"></div>
+
+<!-- HEADER -->
+<header class="hdr">
+<div class="hdr-in">
+  <a href="index.html" class="logo"><span>🌸</span> Mom Graphics</a>
+  <button class="ham" onclick="toggleNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop All <span class="cnt" id="navCnt"></span></a></li>
+    <li><a href="shop.html?cat=floral">Floral</a></li>
+    <li><a href="shop.html?cat=grandma">Grandmas</a></li>
+    <li><a href="gift-guide.html" class="active">Gift Guide</a></li>
+  </ul>
+  <div class="nav-act">
+    <button class="ico-btn" onclick="openSr()" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+    <button class="ico-btn" onclick="openD()" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="var(--rose)"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span class="wc">0</span></button>
   </div>
+</div>
 </header>
 
-<!-- ═══════════ GIFT HERO ═══════════ -->
-<section class="gift-hero">
+<!-- HERO -->
+<section class="gg-hero">
   <div class="container">
-    <span class="section-label">Inspiration & Ideas</span>
-    <h1>Mother's Day Gift Guide</h1>
-    <p>10 creative ways to turn digital graphics into thoughtful, handmade gifts she'll treasure forever.</p>
+    <span class="sl">Gift Guide 2026</span>
+    <h1>10 Quick & Easy Mother's Day Gifts You Can Create Today</h1>
+    <p>From greeting cards to custom mugs — find the best projects to personalize with beautiful digital graphics.</p>
   </div>
 </section>
 
-<!-- ═══════════ GIFT IDEAS ═══════════ -->
-<section class="gift-ideas">
-  <div class="container">
+<div class="container">
+  <p class="gg-intro">The best gifts aren't the most expensive. They're the ones where someone took time, thought, and creativity. This Mother's Day, skip the gift cards and make something she'll keep forever.</p>
 
-    <!-- Idea 1 -->
-    <div class="idea-card aos">
-      <div class="idea-img">
-        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&h=500&fit=crop" alt="Handmade card" loading="lazy">
-      </div>
-      <div class="idea-body">
-        <span class="idea-number">1</span>
-        <h3>Handcrafted Greeting Card</h3>
-        <p>Print your chosen graphic on premium cardstock. Add embossing, ribbon, or hand-lettered notes for a truly personal touch that store-bought cards can't match.</p>
-        <div class="idea-materials">
-          <span class="mat-tag">Cardstock 300gsm</span>
-          <span class="mat-tag">Inkjet printer</span>
-          <span class="mat-tag">Envelope</span>
-          <span class="mat-tag">Ribbon</span>
-        </div>
-        <a href="shop.html#floral" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.3rem;">Browse Floral Designs →</a>
-      </div>
+  <div class="gg-protip">🎨 <strong>Pro tip:</strong> All designs below come with instant download and include PNG, SVG, EPS, and more. Compatible with Cricut, Silhouette, Canva, Photoshop, and all major design tools. <a href="shop.html" style="color:var(--rose);font-weight:600">Browse all <span id="ggTotal"></span> designs here →</a></div>
+</div>
+
+<!-- IDEAS -->
+<section class="gg-ideas">
+<div class="container">
+
+  <!-- 1 -->
+  <div class="idea aos" id="cards">
+    <div class="idea-body">
+      <span class="idea-num">1</span>
+      <h3>Handmade Greeting Card</h3>
+      <p>A personalized greeting card is the gift that melts every mother's heart. Print your chosen graphic on premium cardstock, add a handwritten note, and present it with love. She'll keep it on her shelf for years.</p>
+      <ul class="idea-tips">
+        <li>✅ Best paper: 300gsm cardstock or watercolor paper</li>
+        <li>✅ Best size: A5 folded card (148×210mm)</li>
+        <li>✅ Add embossing, ribbon, or washi tape for extra charm</li>
+      </ul>
+      <a href="shop.html?cat=floral" class="btn btn-p" style="font-size:.85rem;padding:.55rem 1.2rem">Browse Floral Designs →</a>
     </div>
-
-    <!-- Idea 2 -->
-    <div class="idea-card aos">
-      <div class="idea-img">
-        <img src="https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?w=700&h=500&fit=crop" alt="Framed art" loading="lazy">
-      </div>
-      <div class="idea-body">
-        <span class="idea-number">2</span>
-        <h3>Framed Wall Art Print</h3>
-        <p>Choose a quote or floral design, print it on fine art paper (A4 or A3), and frame it. An elegant piece for her bedroom, living room, or home office.</p>
-        <div class="idea-materials">
-          <span class="mat-tag">Fine art paper</span>
-          <span class="mat-tag">Photo frame</span>
-          <span class="mat-tag">Mat board</span>
-        </div>
-        <a href="shop.html#quotes" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.3rem;">Browse Quote Designs →</a>
-      </div>
-    </div>
-
-    <!-- Idea 3 -->
-    <div class="idea-card aos">
-      <div class="idea-img">
-        <img src="https://images.unsplash.com/photo-1556103255-4443dbf8ea38?w=700&h=500&fit=crop" alt="Custom mug" loading="lazy">
-      </div>
-      <div class="idea-body">
-        <span class="idea-number">3</span>
-        <h3>Personalized Photo Mug</h3>
-        <p>Transfer your favorite graphic onto a ceramic mug using sublimation or heat-transfer vinyl. She'll think of you with every morning coffee.</p>
-        <div class="idea-materials">
-          <span class="mat-tag">White ceramic mug</span>
-          <span class="mat-tag">Sublimation ink</span>
-          <span class="mat-tag">Heat press</span>
-        </div>
-        <a href="shop.html#modern" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.3rem;">Browse Modern Designs →</a>
-      </div>
-    </div>
-
-    <!-- Idea 4 -->
-    <div class="idea-card aos">
-      <div class="idea-img">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=700&h=500&fit=crop" alt="Gift box" loading="lazy">
-      </div>
-      <div class="idea-body">
-        <span class="idea-number">4</span>
-        <h3>Decorative Gift Box</h3>
-        <p>Print designs on sticker paper and decorate a plain gift box. Add tissue paper and a handwritten note for an unforgettable presentation.</p>
-        <div class="idea-materials">
-          <span class="mat-tag">Gift box</span>
-          <span class="mat-tag">Sticker paper</span>
-          <span class="mat-tag">Tissue paper</span>
-        </div>
-        <a href="shop.html#floral" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.3rem;">Browse Floral Designs →</a>
-      </div>
-    </div>
-
-    <!-- Idea 5 -->
-    <div class="idea-card aos">
-      <div class="idea-img">
-        <img src="https://images.unsplash.com/photo-1474631245212-32dc3c8310c6?w=700&h=500&fit=crop" alt="Scrapbook" loading="lazy">
-      </div>
-      <div class="idea-body">
-        <span class="idea-number">5</span>
-        <h3>Memory Scrapbook Pages</h3>
-        <p>Use clipart, borders, and quote graphics to create beautiful scrapbook layouts. Add family photos for pages she'll flip through for years.</p>
-        <div class="idea-materials">
-          <span class="mat-tag">Scrapbook album</span>
-          <span class="mat-tag">Photo paper</span>
-          <span class="mat-tag">Adhesive</span>
-          <span class="mat-tag">Washi tape</span>
-        </div>
-        <a href="shop.html#bundles" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.3rem;">Browse Bundles →</a>
-      </div>
-    </div>
-
-    <!-- Idea 6 -->
-    <div class="idea-card aos">
-      <div class="idea-img">
-        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=700&h=500&fit=crop" alt="T-shirt" loading="lazy">
-      </div>
-      <div class="idea-body">
-        <span class="idea-number">6</span>
-        <h3>Custom T-Shirt or Tote Bag</h3>
-        <p>Iron-on transfer or screen-print a "Best Mom Ever" design onto a t-shirt or canvas tote. A wearable reminder of your love!</p>
-        <div class="idea-materials">
-          <span class="mat-tag">Blank t-shirt / tote</span>
-          <span class="mat-tag">HTV vinyl</span>
-          <span class="mat-tag">Iron or heat press</span>
-        </div>
-        <a href="shop.html#quotes" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.3rem;">Browse Quote Designs →</a>
-      </div>
-    </div>
-
-    <!-- Idea 7 -->
-    <div class="idea-card aos">
-      <div class="idea-img">
-        <img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=700&h=500&fit=crop" alt="Cake topper" loading="lazy">
-      </div>
-      <div class="idea-body">
-        <span class="idea-number">7</span>
-        <h3>Cake Topper & Party Decor</h3>
-        <p>Print, cut, and mount designs on sticks for cake toppers, cupcake wraps, or party banners. Perfect for a Mother's Day brunch!</p>
-        <div class="idea-materials">
-          <span class="mat-tag">Cardstock</span>
-          <span class="mat-tag">Wooden sticks</span>
-          <span class="mat-tag">Craft glue</span>
-          <span class="mat-tag">Scissors / Cricut</span>
-        </div>
-        <a href="shop.html#kids" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.3rem;">Browse Kids Designs →</a>
-      </div>
-    </div>
-
-    <!-- Idea 8 -->
-    <div class="idea-card aos">
-      <div class="idea-img">
-        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=700&h=500&fit=crop" alt="Planner stickers" loading="lazy">
-      </div>
-      <div class="idea-body">
-        <span class="idea-number">8</span>
-        <h3>Planner Stickers Set</h3>
-        <p>Print graphics on sticker sheets to create a custom planner sticker set. A practical yet beautiful gift for organized moms.</p>
-        <div class="idea-materials">
-          <span class="mat-tag">Sticker sheets</span>
-          <span class="mat-tag">Cricut / scissors</span>
-          <span class="mat-tag">Storage pouch</span>
-        </div>
-        <a href="shop.html#bundles" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.3rem;">Browse Bundles →</a>
-      </div>
-    </div>
-
-    <!-- Idea 9 -->
-    <div class="idea-card aos">
-      <div class="idea-img">
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&h=500&fit=crop" alt="Phone case" loading="lazy">
-      </div>
-      <div class="idea-body">
-        <span class="idea-number">9</span>
-        <h3>Custom Phone Case</h3>
-        <p>Upload a PNG design to a phone-case printing service and create a unique, protective accessory she'll carry everywhere.</p>
-        <div class="idea-materials">
-          <span class="mat-tag">Blank phone case</span>
-          <span class="mat-tag">Sublimation printer</span>
-          <span class="mat-tag">or online service</span>
-        </div>
-        <a href="shop.html#modern" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.3rem;">Browse Modern Designs →</a>
-      </div>
-    </div>
-
-    <!-- Idea 10 -->
-    <div class="idea-card aos">
-      <div class="idea-img">
-        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=700&h=500&fit=crop" alt="Digital collage" loading="lazy">
-      </div>
-      <div class="idea-body">
-        <span class="idea-number">10</span>
-        <h3>Digital Photo Collage</h3>
-        <p>Combine family photos with decorative frames and clipart in Canva or Photoshop. Print or share digitally for a modern keepsake.</p>
-        <div class="idea-materials">
-          <span class="mat-tag">Canva / Photoshop</span>
-          <span class="mat-tag">Family photos</span>
-          <span class="mat-tag">Photo printer</span>
-        </div>
-        <a href="shop.html#grandmas" class="btn btn-primary" style="font-size:.85rem; padding:.6rem 1.3rem;">Browse Grandma Designs →</a>
-      </div>
-    </div>
-
+    <div class="idea-imgs" id="gi1"></div>
   </div>
+
+  <!-- 2 -->
+  <div class="idea aos" id="mugs">
+    <div class="idea-body">
+      <span class="idea-num">2</span>
+      <h3>Personalized Coffee Mug</h3>
+      <p>Transfer a "Best Mom Ever" or cute animal design onto a white ceramic mug using sublimation or heat-transfer vinyl. She'll think of you with every morning coffee. It's the gift that keeps on giving — every single day.</p>
+      <ul class="idea-tips">
+        <li>✅ Use sublimation ink and a white ceramic mug</li>
+        <li>✅ Heat press at 400°F for 60 seconds</li>
+        <li>✅ Or use a local print-on-demand service</li>
+      </ul>
+      <a href="shop.html?cat=sublimation" class="btn btn-p" style="font-size:.85rem;padding:.55rem 1.2rem">Browse Sublimation Designs →</a>
+    </div>
+    <div class="idea-imgs" id="gi2"></div>
+  </div>
+
+  <!-- 3 -->
+  <div class="idea aos" id="prints">
+    <div class="idea-body">
+      <span class="idea-num">3</span>
+      <h3>Framed Art Print</h3>
+      <p>Choose a beautiful quote or watercolor design, print it on fine art paper (A4 or A3), and frame it. An elegant piece for her bedroom, living room, or home office. The kind of gift that says "I know your style."</p>
+      <ul class="idea-tips">
+        <li>✅ Fine art paper or photo lustre paper</li>
+        <li>✅ Frame with mat board for a gallery look</li>
+        <li>✅ Quote designs work beautifully as wall art</li>
+      </ul>
+      <a href="shop.html?cat=quotes" class="btn btn-p" style="font-size:.85rem;padding:.55rem 1.2rem">Browse Quote Designs →</a>
+    </div>
+    <div class="idea-imgs" id="gi3"></div>
+  </div>
+
+  <!-- 4 -->
+  <div class="idea aos">
+    <div class="idea-body">
+      <span class="idea-num">4</span>
+      <h3>Canvas Tote Bag</h3>
+      <p>Canvas tote bags are a daily staple — grocery runs, farmers markets, beach days. Print or iron-on a beautiful design on natural-colored canvas. She'll carry it everywhere and think of you every time.</p>
+      <ul class="idea-tips">
+        <li>✅ Use iron-on transfer paper or HTV vinyl</li>
+        <li>✅ Best designs: large florals or bold lettering</li>
+        <li>✅ 12 oz natural cotton canvas works best</li>
+      </ul>
+      <a href="shop.html?cat=floral" class="btn btn-p" style="font-size:.85rem;padding:.55rem 1.2rem">Browse Floral Designs →</a>
+    </div>
+    <div class="idea-imgs" id="gi4"></div>
+  </div>
+
+  <!-- 5 -->
+  <div class="idea aos">
+    <div class="idea-body">
+      <span class="idea-num">5</span>
+      <h3>Memory Scrapbook</h3>
+      <p>Use clipart, borders, and quote graphics to create beautiful scrapbook layouts. Add family photos for pages she'll flip through for years. A truly personal keepsake.</p>
+      <ul class="idea-tips">
+        <li>✅ Print designs on sticker paper or photo paper</li>
+        <li>✅ Combine with washi tape and handwriting</li>
+        <li>✅ Clipart bundles give you the most variety</li>
+      </ul>
+      <a href="shop.html?cat=clipart" class="btn btn-p" style="font-size:.85rem;padding:.55rem 1.2rem">Browse Clipart Bundles →</a>
+    </div>
+    <div class="idea-imgs" id="gi5"></div>
+  </div>
+
+  <!-- 6 -->
+  <div class="idea aos">
+    <div class="idea-body">
+      <span class="idea-num">6</span>
+      <h3>Custom T-Shirt or Hoodie</h3>
+      <p>Iron-on or sublimate a fun design onto a t-shirt or cozy hoodie. "Mama Bear," "Super Mom," "Dog Mom" — there's a design for every kind of mom.</p>
+      <ul class="idea-tips">
+        <li>✅ Use HTV vinyl with Cricut or Silhouette</li>
+        <li>✅ Mirror the design before cutting!</li>
+        <li>✅ Works great on cotton and poly-blend fabrics</li>
+      </ul>
+      <a href="shop.html?cat=sublimation" class="btn btn-p" style="font-size:.85rem;padding:.55rem 1.2rem">Browse Sublimation Designs →</a>
+    </div>
+    <div class="idea-imgs" id="gi6"></div>
+  </div>
+
+  <!-- 7 -->
+  <div class="idea aos">
+    <div class="idea-body">
+      <span class="idea-num">7</span>
+      <h3>Decorative Throw Pillow</h3>
+      <p>A personalized throw pillow instantly elevates any living room. Print a watercolor design on a linen pillow cover, add a pillow insert, and gift it in a beautiful box for a boutique-quality present.</p>
+      <ul class="idea-tips">
+        <li>✅ Use sublimation on polyester pillow covers</li>
+        <li>✅ Standard throw pillow: 18×18 inches</li>
+        <li>✅ Floral and watercolor designs work best</li>
+      </ul>
+      <a href="shop.html?cat=watercolor" class="btn btn-p" style="font-size:.85rem;padding:.55rem 1.2rem">Browse Watercolor Designs →</a>
+    </div>
+    <div class="idea-imgs" id="gi7"></div>
+  </div>
+
+  <!-- 8 -->
+  <div class="idea aos">
+    <div class="idea-body">
+      <span class="idea-num">8</span>
+      <h3>Cake Topper & Party Decor</h3>
+      <p>Print, cut, and mount designs on sticks for cake toppers, cupcake wraps, or party banners. Perfect for a Mother's Day brunch celebration!</p>
+      <ul class="idea-tips">
+        <li>✅ Print on heavy cardstock for durability</li>
+        <li>✅ Use wooden sticks and craft glue</li>
+        <li>✅ Combine multiple small designs for a set</li>
+      </ul>
+      <a href="shop.html?cat=kids" class="btn btn-p" style="font-size:.85rem;padding:.55rem 1.2rem">Browse Kids Designs →</a>
+    </div>
+    <div class="idea-imgs" id="gi8"></div>
+  </div>
+
+  <!-- 9 -->
+  <div class="idea aos">
+    <div class="idea-body">
+      <span class="idea-num">9</span>
+      <h3>Gift for Grandma</h3>
+      <p>Grammy, Nana, Mimi, Oma — grandma names are deeply personal. Find a design with her specific grandma name and put it on a mug, towel, or framed print. She'll love that you remembered her special name.</p>
+      <ul class="idea-tips">
+        <li>✅ We have designs for every grandma name</li>
+        <li>✅ Pair with a photo of the grandkids</li>
+        <li>✅ Great on kitchen towels and aprons</li>
+      </ul>
+      <a href="shop.html?cat=grandma" class="btn btn-p" style="font-size:.85rem;padding:.55rem 1.2rem">Browse Grandma Designs →</a>
+    </div>
+    <div class="idea-imgs" id="gi9"></div>
+  </div>
+
+  <!-- 10 -->
+  <div class="idea aos">
+    <div class="idea-body">
+      <span class="idea-num">10</span>
+      <h3>Digital Photo Collage</h3>
+      <p>Combine family photos with decorative frames and clipart in Canva or Photoshop. Print or share digitally — a modern keepsake that tells your family's story beautifully.</p>
+      <ul class="idea-tips">
+        <li>✅ Use Canva (free) or Photoshop</li>
+        <li>✅ Mix family photos with decorative elements</li>
+        <li>✅ Print on canvas for a gallery-quality gift</li>
+      </ul>
+      <a href="shop.html?cat=modern" class="btn btn-p" style="font-size:.85rem;padding:.55rem 1.2rem">Browse Modern Designs →</a>
+    </div>
+    <div class="idea-imgs" id="gi10"></div>
+  </div>
+
+</div>
 </section>
 
-<!-- ═══════════ CTA ═══════════ -->
-<section class="cta-section">
-  <div class="container aos">
-    <h2>Ready to Create Something Special?</h2>
-    <p>Browse our full collection and find the perfect graphic for your handmade gift.</p>
-    <a href="shop.html" class="btn btn-white">Explore All Designs →</a>
+<div class="container" style="text-align:center;margin:2rem 0">
+  <p class="gg-protip">✨ <strong>Stock up on designs:</strong> Browse all <span id="ggTotal2"></span> Mother's Day graphics — <a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener" style="color:var(--rose);font-weight:600">click here to shop the full collection →</a> Instant download, commercial licence included.</p>
+</div>
+
+<!-- FEATURED PRODUCTS -->
+<section class="gg-featured">
+<div class="container">
+  <div class="sec-h aos">
+    <div><span class="sl">Shop the Guide</span><h2>Designs Featured in This Guide</h2></div>
+    <a href="shop.html" class="btn btn-o">View All <span id="ggTotal3"></span> Designs ➜</a>
   </div>
+  <div class="products-grid" id="giftProducts"></div>
+</div>
 </section>
 
-<!-- ═══════════ FOOTER ═══════════ -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo"><span>🌸</span> MomGraphics</div>
-        <p>Beautiful digital graphics for Mother's Day. Cards, posters, clipart, and more — crafted with love for every mom.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="shop.html">Shop All</a></li>
-          <li><a href="gift-guide.html">Gift Guide</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Categories</h4>
-        <ul>
-          <li><a href="shop.html#floral">Floral</a></li>
-          <li><a href="shop.html#quotes">Quotes</a></li>
-          <li><a href="shop.html#kids">Kids</a></li>
-          <li><a href="shop.html#modern">Modern</a></li>
-          <li><a href="shop.html#bundles">Bundles</a></li>
-        </ul>
-      </div>
-      <div class="footer-col footer-newsletter">
-        <h4>Stay Inspired</h4>
-        <p>Get new designs and exclusive deals delivered to your inbox.</p>
-        <form onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
-          <input type="email" placeholder="Your email..." required>
-          <button type="submit">Join</button>
-        </form>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 MomGraphics. Crafted with 💕 for every mother.</p>
-    </div>
+<!-- CTA -->
+<section class="cta-sec">
+<div class="container aos">
+  <h2>Ready to Start Creating?</h2>
+  <p><span id="ggTotal4"></span> premium Mother's Day graphics — instant download, all formats, commercial licence.</p>
+  <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
+    <a href="shop.html" class="btn btn-w">Browse All Designs ➜</a>
+    <a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener" class="btn btn-o" style="border-color:rgba(255,255,255,.3);color:#fff">Creative Fabrica</a>
   </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ftr">
+<div class="container">
+  <div class="ftr-grid">
+    <div><div class="logo"><span>🌸</span> Mom Graphics</div><p><span id="ftrTotal"></span> premium digital graphics for Mother's Day.</p><p class="ftr-aff" style="text-align:left;margin-top:.4rem">Affiliate disclosure: links lead to Creative Fabrica.</p></div>
+    <div><h4>Shop</h4><ul id="ftrCats"></ul></div>
+    <div><h4>Guide</h4><ul>
+      <li><a href="#cards">Greeting Cards</a></li>
+      <li><a href="#mugs">Custom Mugs</a></li>
+      <li><a href="#prints">Art Prints</a></li>
+    </ul></div>
+    <div><h4>Navigate</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="https://www.creativefabrica.com/search/ref/20531415/?query=mother&type=Graphics" target="_blank" rel="noopener">Creative Fabrica</a></li>
+    </ul></div>
+  </div>
+  <div class="ftr-bot"><p>&copy; 2026 Mom Graphics<br><span id="ftrTotal2"></span> designs · Affiliate links to Creative Fabrica</p></div>
+</div>
 </footer>
 
-<!-- ═══════════ WISHLIST DRAWER ═══════════ -->
-<div id="wishDrawer">
-  <div class="drawer-header">
-    <h3>♡ My Wishlist</h3>
-    <button class="drawer-close" onclick="closeDrawer()">✕</button>
-  </div>
-  <div class="drawer-body" id="drawerList"></div>
+<!-- MOBILE BAR -->
+<div id="mobBar">
+  <a href="index.html"><span>🏠</span>Home</a>
+  <a href="shop.html"><span>🛍</span>Shop</a>
+  <button onclick="openSr()"><span>🔍</span>Search</button>
+  <button onclick="openD()"><span>🤍</span>Wishlist</button>
+  <a href="gift-guide.html"><span>🎁</span>Guide</a>
 </div>
-<div id="drawerOverlay"></div>
 
-<!-- Scroll to top -->
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="toTop">↑</button>
 
 <script src="products.js"></script>
 <script src="shared.js"></script>
 <script>
-  window.addEventListener('scroll', ()=>{
-    document.getElementById('scrollTop')?.classList.toggle('show', window.scrollY > 500);
-  }, {passive:true});
+  const total=P.length;
+  document.querySelectorAll('#ggTotal,#ggTotal2,#ggTotal3,#ggTotal4,#ftrTotal,#ftrTotal2').forEach(e=>e.textContent=total);
+  document.getElementById('navCnt').textContent=total;
+
+  // Fill idea images with random products from matching categories
+  function fillIdea(id, cat, n){
+    const el=document.getElementById(id);if(!el)return;
+    const items=P.filter(p=>CN[p[3]]===cat).sort(()=>Math.random()-.5).slice(0,n||4);
+    el.innerHTML=items.map(p=>`<a href="${prodUrl(p)}" target="_blank" rel="noopener"><img src="${prodImg(p)}" alt="${p[0]}" loading="lazy"></a>`).join('');
+  }
+  fillIdea('gi1','floral',4);
+  fillIdea('gi2','sublimation',4);
+  fillIdea('gi3','quotes',4);
+  fillIdea('gi4','floral',4);
+  fillIdea('gi5','clipart',4);
+  fillIdea('gi6','sublimation',4);
+  fillIdea('gi7','watercolor',4);
+  fillIdea('gi8','kids',4);
+  fillIdea('gi9','grandma',4);
+  fillIdea('gi10','modern',4);
+
+  // Footer cats
+  (function(){
+    const ul=document.getElementById('ftrCats');if(!ul)return;
+    let h=`<li><a href="shop.html">All ${total} Designs</a></li>`;
+    CATS.forEach(c=>h+=`<li><a href="shop.html?cat=${c.id}">${c.label}</a></li>`);
+    ul.innerHTML=h;
+  })();
 </script>
 </body>
 </html>
